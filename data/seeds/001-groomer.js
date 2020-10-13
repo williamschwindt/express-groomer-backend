@@ -32,7 +32,6 @@ exports.seed = function (knex) {
           country: 'USA',
           walk_rate: '1200',
           day_care_rate: '10000',
-
         },
       ]);
     });
