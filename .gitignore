@@ -37,3 +37,4 @@ jspm_packages/
 .env.local
 .env_local
 .env_elephantsql
+.env_docker
