@@ -2,11 +2,33 @@ exports.up = (knex) => {
   return knex.schema
     .raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
     .createTable('groomer_customer_service', function (table) {
-      table.string('id').notNullable().unique().primary();
-      table.string('customer_id');
-      table.string('pet_id');
-      table.string('groomer_id');
-      table.string('service_id');
+      table.integer('id').notNullable().unique().primary();
+      table
+        .integer('customer_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('Customer');
+      table
+        .integer('pet_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('Pet');
+      table
+        .integer('groomer_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('Groomer');
+      table
+        .integer('service_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('Service');
+
+      table.primary(['customer_id', 'pet_id', 'groomer_id', 'service_id']);
       table.timestamps(true, true);
     });
 };

@@ -2,12 +2,12 @@ exports.up = (knex) => {
   return knex.schema
     .raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
     .createTable('Service', function (table) {
-      table.string('id').notNullable().unique().primary();
-      table.string('name');
-      table.string('start_date');
-      table.string('end_date');
-      table.string('start_time');
-      table.string('end_time');
+      table.integer('id').notNullable().unique().primary();
+      table.string('name', 128);
+      table.string('start_date', 128);
+      table.string('end_date', 128);
+      table.string('start_time', 128);
+      table.string('end_time', 128);
       table.timestamps(true, true);
     });
 };
