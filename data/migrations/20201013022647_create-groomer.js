@@ -6,6 +6,7 @@ exports.up = (knex) => {
       table.string('name').notNullable();
       table.string('lastname').notNullable();
       table.string('address').notNullable();
+      table.string('zip');
       table.integer('phone').notNullable().unique();
       table.string('email').notNullable().unique();
       table.string('city');
