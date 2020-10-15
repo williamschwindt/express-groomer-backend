@@ -4,6 +4,7 @@ exports.up = (knex) => {
       // .raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
       .createTable('customers', function (table) {
         table.integer('id').notNullable().unique().primary();
+        table.string('oktaId');
         table.string('name', 128).notNullable();
         table.text('description');
         table.string('lastname', 128).notNullable();
