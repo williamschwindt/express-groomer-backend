@@ -1,7 +1,7 @@
 exports.up = (knex) => {
-  return knex.schema.createTable('Pet', function (table) {
+  return knex.schema.createTable('pets', function (table) {
     table.integer('id').notNullable().unique().primary();
-    table.text('description', 128);
+    table.text('description');
     table.string('name', 128);
     table.string('photo_url', 128).unique();
     table.timestamps(true, true);
@@ -9,5 +9,5 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists('Pet');
+  return knex.schema.dropTableIfExists('pets');
 };

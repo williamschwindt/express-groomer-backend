@@ -1,8 +1,8 @@
 exports.up = (knex) => {
-  return knex.schema.createTable('Customer', function (table) {
-    table.integer('id').notNullable().unique().primary();
-    table.text('description');
+  return knex.schema.createTable('customers', function (table) {
+    table.integer('id').notNullable().primary();
     table.string('name', 128).notNullable();
+    table.text('description').notNullable();
     table.string('lastname', 128).notNullable();
     table.string('address', 128).notNullable();
     table.string('zip', 128);
@@ -17,5 +17,5 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists('Customer');
+  return knex.schema.dropTableIfExists('customers');
 };

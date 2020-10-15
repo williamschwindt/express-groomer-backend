@@ -1,5 +1,5 @@
 exports.up = (knex) => {
-  return knex.schema.createTable('groomers_customers_services', function (
+  return knex.schema.createTable('groomers_customers_services_pets', function (
     table
   ) {
     table.integer('id').notNullable();
@@ -34,5 +34,5 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists('groomers_customers_services');
+  return knex.schema.dropTableIfExists('groomers_customers_services_pets');
 };

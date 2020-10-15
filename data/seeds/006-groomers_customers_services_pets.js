@@ -1,10 +1,10 @@
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('groomers_customers_services')
+  return knex('groomers_customers_services_pets')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('groomers_customers_services').insert([
+      return knex('groomers_customers_services_pets').insert([
         {
           id: 1,
           customer_id: '2',

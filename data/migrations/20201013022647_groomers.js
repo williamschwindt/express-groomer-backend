@@ -1,8 +1,8 @@
 exports.up = (knex) => {
-  return knex.schema.createTable('Groomer', function (table) {
+  return knex.schema.createTable('groomers', function (table) {
     table.integer('id').notNullable().unique().primary();
     table.string('name', 128).notNullable();
-    table.string('description', 128).notNullable();
+    table.text('description').notNullable();
     table.string('lastname', 128).notNullable();
     table.string('address', 128).notNullable();
     table.string('zip', 128);
@@ -12,12 +12,13 @@ exports.up = (knex) => {
     table.string('state', 128);
     table.string('country', 128);
     table.string('photo_url', 128).unique();
-    table.integer('walk_rate').unsigned().notNullable();
-    table.integer('day_care_rate').unsigned().notNullable();
+    table.integer('walk_rate').unsigned();
+    table.integer('day_care_rate').unsigned();
+    table.integer('vet_visit_rate').unsigned();
     table.timestamps(true, true);
   });
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists('Groomer');
+  return knex.schema.dropTableIfExists('groomers');
 };
