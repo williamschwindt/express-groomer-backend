@@ -1,5 +1,4 @@
 
-
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)![node express](https://img.shields.io/node/v-lts/express)![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
 
 # express-groomer-be
@@ -7,13 +6,11 @@
 For steps on how to work with this repository [please see here](https://docs.labs.lambdaschool.com/labs-spa-starter/)
 
 
-
 # Project
 
 
 
 You can find the deployed project at [Heroku](https://labspt12-express-groomer-a-api.herokuapp.com).
-
 
 
 ## Contributors
@@ -26,17 +23,12 @@ You can find the deployed project at [Heroku](https://labspt12-express-groomer-a
 | [<img src="https://github.com/favicon.ico" width="50">](https://github.com/luisabellan) | [<img src="https://github.com/favicon.ico" width="50">](https://github.com/RobertElias) | [<img src="https://github.com/favicon.ico" width="50">](https://github.com/williamschwindt) | [<img src="https://github.com/favicon.ico" width="50">](https://github.com/scratchglory) | [<img src="https://github.com/favicon.ico" width="50">](https://github.com/Garuda27) |
 | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50">](https://www.linkedin.com/in/luis-abellan-dev/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="50">](https://www.linkedin.com/) |
 
-
-
-
-
 ### Key Features
 
 - Connects groomers with pet owners
 - Secure online payments via Stripe
 - Log in using social accounts (Google, Facebook)
 
-  
 
 #### Back end deployed to [Heroku](https://labspt12-express-groomer-a-api.herokuapp.com) built using:
 
@@ -51,13 +43,11 @@ You can find the deployed project at [Heroku](https://labspt12-express-groomer-a
 - Swagger JS / Swagger UI
 - Morgan
 - Helmet
-- Axios 
-
-
+- Axios
 
 # APIs
 
-## Okta API 
+## Okta API
 
 [API swagger docs](https://app.swaggerhub.com/apis-docs/LabsPT12TeamA/Express_Groomer/1.0.0)
 
