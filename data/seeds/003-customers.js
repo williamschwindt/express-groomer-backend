@@ -1,36 +1,26 @@
+const faker = require('faker/locale/en_US');
+
+const customers = [...new Array(100)].map((i, idx) => ({
+  id: faker.random.alphaNumeric(20),
+  description: faker.lorem.paragraph(1),
+  photo_url: faker.image.avatar(),
+  name: faker.name.firstName(),
+  lastname: faker.name.lastName(),
+  address: faker.address.streetAddress(),
+  zip: faker.address.zipCode(),
+  phone: faker.phone.phoneNumber(),
+  email: faker.internet.email(),
+  city: faker.address.city(),
+  state: faker.address.state(),
+  country: 'USA',
+}));
+
 exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('customers')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('customers').insert([
-        {
-          id: 1,
-          description: 'yadda yadda',
-          name: 'John',
-          lastname: 'Doe',
-          address: '889 Thurmond St NW',
-          zip: '30314',
-          phone: '+1 404-230-9235',
-          email: 'john@gmail.com',
-          city: 'Atlanta',
-          state: 'Georgia',
-          country: 'USA',
-        },
-        {
-          id: 2,
-          description: 'yadda yadda',
-          name: 'Jane',
-          lastname: 'Smith',
-          address: '22 Thurmond St NW',
-          zip: '30314',
-          phone: '+1 404-250-3235',
-          email: 'jane@cocos.com',
-          city: 'Atlanta',
-          state: 'Georgia',
-          country: 'USA',
-        },
-      ]);
+      return knex('customers').insert(customers);
     });
 };

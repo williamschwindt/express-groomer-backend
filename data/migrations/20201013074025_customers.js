@@ -1,19 +1,21 @@
 exports.up = (knex) => {
-  return knex.schema.createTable('customers', function (table) {
-    table.integer('id').notNullable().primary();
-    table.string('name', 128).notNullable();
-    table.text('description').notNullable();
-    table.string('lastname', 128).notNullable();
-    table.string('address', 128).notNullable();
-    table.string('zip', 128);
-    table.string('phone', 128).notNullable().unique();
-    table.string('email', 128).notNullable().unique();
-    table.string('city', 128);
-    table.string('state', 128);
-    table.string('country', 128);
-    table.string('photo_url', 128).unique();
-    table.timestamps(true, true);
-  });
+  return knex.schema
+    .raw('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
+    .createTable('customers', function (table) {
+      table.string('id').notNullable().unique().primary();
+      table.string('name', 128).notNullable();
+      table.text('description');
+      table.string('lastname', 128).notNullable();
+      table.string('address', 128).notNullable();
+      table.string('zip', 128);
+      table.string('phone', 128).notNullable().unique();
+      table.string('email', 128).notNullable().unique();
+      table.string('city', 128);
+      table.string('state', 128);
+      table.string('country', 128);
+      table.string('photo_url');
+      table.timestamps(true, true);
+    });
 };
 
 exports.down = (knex) => {
