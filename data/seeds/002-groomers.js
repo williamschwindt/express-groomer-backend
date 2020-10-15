@@ -1,7 +1,7 @@
 const faker = require('faker');
 
 const groomers = [...new Array(100)].map((i, idx) => ({
-  id: faker.random.alphaNumeric(20),
+  id: idx,
   photo_url: faker.image.avatar(),
   name: faker.name.firstName(),
   lastname: faker.name.lastName(),

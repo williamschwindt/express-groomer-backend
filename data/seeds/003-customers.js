@@ -1,7 +1,7 @@
 const faker = require('faker/locale/en_US');
 
 const customers = [...new Array(100)].map((i, idx) => ({
-  id: faker.random.alphaNumeric(20),
+  id: idx,
   description: faker.lorem.paragraph(1),
   photo_url: faker.image.avatar(),
   name: faker.name.firstName(),
