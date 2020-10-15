@@ -1,12 +1,13 @@
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('Customer')
+  return knex('customers')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('Customer').insert([
+      return knex('customers').insert([
         {
           id: 1,
+          description: 'yadda yadda',
           name: 'John',
           lastname: 'Doe',
           address: '889 Thurmond St NW',
@@ -19,6 +20,7 @@ exports.seed = function (knex) {
         },
         {
           id: 2,
+          description: 'yadda yadda',
           name: 'Jane',
           lastname: 'Smith',
           address: '22 Thurmond St NW',
