@@ -1,23 +1,23 @@
 const db = require('../../data/db-config');
 
 const findAll = async () => {
-  return await db('customers');
+  return await db('Customer').select('*');
 };
 
 const findBy = (filter) => {
-  return db('customers').where(filter);
+  return db('Customer').where(filter);
 };
 
 const findById = async (id) => {
-  return db('customers').where({ id }).first().select('*');
+  return db('Customer').where({ id }).first().select('*');
 };
 
 const create = async (profile) => {
-  return db('customers').insert(profile).returning('*');
+  return db('Customer').insert(profile).returning('*');
 };
 
 const update = (id, profile) => {
-  return db('customers')
+  return db('Customer')
     .where({ id: id })
     .first()
     .update(profile)
@@ -25,7 +25,7 @@ const update = (id, profile) => {
 };
 
 const remove = async (id) => {
-  return await db('customers').where({ id }).del();
+  return await db('Customer').where({ id }).del();
 };
 
 const findOrCreateCustomer = async (customerObj) => {
