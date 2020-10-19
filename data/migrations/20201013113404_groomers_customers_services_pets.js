@@ -2,7 +2,7 @@ exports.up = (knex) => {
   return knex.schema.createTable('groomers_customers_services_pets', function (
     table
   ) {
-    table.integer('id').notNullable().unique();
+    table.integer('id').increments().notNullable().unique();
     table.integer('customer_id').references('id').inTable('customers');
     table.integer('pet_id').references('id').inTable('pets');
     table.integer('groomer_id').references('id').inTable('groomers');
