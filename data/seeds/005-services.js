@@ -6,15 +6,12 @@ exports.seed = function (knex) {
       // Inserts seed entries
       return knex('services').insert([
         {
-          id: 1,
           name: 'walk',
         },
         {
-          id: 2,
           name: 'daycare',
         },
         {
-          id: 3,
           name: 'vetVisit',
         },
       ]);

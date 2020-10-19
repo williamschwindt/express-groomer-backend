@@ -8,7 +8,6 @@ exports.up = (knex) => {
     table.integer('groomer_id').references('id').inTable('groomers');
     table.integer('service_id').references('id').inTable('services');
 
-    table.primary(['customer_id', 'pet_id', 'groomer_id', 'service_id']);
     table.timestamps(true, true);
   });
 };
