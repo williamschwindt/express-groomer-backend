@@ -28,17 +28,9 @@ const remove = async (id) => {
   return await db('customers').where({ id }).del();
 };
 
-const findOrCreateCustomer = async (customerObj) => {
-  const foundCustomer = await findById(customerObj.id).then(
-    (customer) => customer
-  );
-  if (foundCustomer) {
-    return foundCustomer;
-  } else {
-    return await create(customerObj).then((newCustomer) => {
-      return newCustomer ? newCustomer[0] : newCustomer;
-    });
-  }
+const createCustomer = async (customerObj) => {
+  const [id] = await db('customers').insert(customerObj).returning('id');
+  return await findById(id);
 };
 
 module.exports = {
@@ -48,5 +40,5 @@ module.exports = {
   create,
   update,
   remove,
-  findOrCreateCustomer,
+  createCustomer,
 };
