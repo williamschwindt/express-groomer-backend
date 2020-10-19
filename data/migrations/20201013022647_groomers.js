@@ -1,6 +1,6 @@
 exports.up = (knex) => {
   return knex.schema.createTable('groomers', function (table) {
-    table.integer('id').notNullable().unique().primary();
+    table.integer('id').increments();
     table.string('oktaId');
     table.string('name', 128).notNullable();
     table.text('description');
