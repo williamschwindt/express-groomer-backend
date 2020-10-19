@@ -1,6 +1,6 @@
 exports.up = (knex) => {
   return knex.schema.createTable('services', function (table) {
-    table.integer('id').increments();
+    table.increments('id');
     table.string('name', 128);
     table.timestamps(true, true);
   });
