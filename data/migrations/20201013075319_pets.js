@@ -1,6 +1,6 @@
 exports.up = (knex) => {
   return knex.schema.createTable('pets', function (table) {
-    table.integer('id').increments().notNullable().unique().primary();
+    table.integer('id').notNullable().unique().primary();
     table.text('description');
     table.string('name', 128);
     table.string('photo_url');
