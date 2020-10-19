@@ -4,7 +4,14 @@ const groomersModel = require('./groomersModel');
 
 router.get('/', async (req, res) => {
   try {
-    console.log('');
+    // check if there is a query
+    if (Object.keys(req.query).length !== 0) {
+      const groomer = await groomersModel.findBy(req.query);
+      return res.status(200).json(groomer);
+    } else {
+      const groomers = await groomersModel.findAll();
+      return res.status(200).json({ groomers });
+    }
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -51,7 +58,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.post('/:id', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newGroomer = req.body;
 
