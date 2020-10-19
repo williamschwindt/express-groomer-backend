@@ -28,15 +28,9 @@ const remove = async (id) => {
   return await db('groomers').where({ id }).del();
 };
 
-const findOrCreateGroomer = async (groomerObj) => {
-  const foundGroomer = await findById(groomerObj.id).then((groomer) => groomer);
-  if (foundGroomer) {
-    return foundGroomer;
-  } else {
-    return await create(groomerObj).then((newGroomer) => {
-      return newGroomer ? newGroomer[0] : newGroomer;
-    });
-  }
+const createGroomer = async (groomerObj) => {
+  const [id] = await db('groomers').insert(groomerObj).returning('id');
+  return await findById(id);
 };
 
 module.exports = {
@@ -46,5 +40,5 @@ module.exports = {
   create,
   update,
   remove,
-  findOrCreateGroomer,
+  createGroomer,
 };
