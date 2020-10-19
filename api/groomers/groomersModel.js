@@ -1,27 +1,31 @@
 const db = require('../../data/db-config');
 
 const findAll = async () => {
-  return await db('Groomer');
+  return await db('groomers');
 };
 
 const findBy = (filter) => {
-  return db('Groomer').where(filter);
+  return db('groomers').where(filter);
 };
 
 const findById = async (id) => {
-  return db('Groomer').where({ id }).first().select('*');
+  return db('groomers').where({ id }).first().select('*');
 };
 
 const create = async (profile) => {
-  return db('Groomer').insert(profile).returning('*');
+  return db('groomers').insert(profile).returning('*');
 };
 
 const update = (id, profile) => {
-  return db('Groomer').where({ id: id }).first().update(profile).returning('*');
+  return db('groomers')
+    .where({ id: id })
+    .first()
+    .update(profile)
+    .returning('*');
 };
 
 const remove = async (id) => {
-  return await db('Groomer').where({ id }).del();
+  return await db('groomers').where({ id }).del();
 };
 
 const findOrCreateGroomer = async (groomerObj) => {
