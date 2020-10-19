@@ -1,25 +1,21 @@
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('Service')
+  return knex('services')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('Service').insert([
+      return knex('services').insert([
         {
           id: 1,
           name: 'walk',
-          start_date: '',
-          end_date: '',
-          start_time: '',
-          end_time: '',
         },
         {
           id: 2,
           name: 'daycare',
-          start_date: '',
-          end_date: '',
-          start_time: '',
-          end_time: '',
+        },
+        {
+          id: 3,
+          name: 'vetVisit',
         },
       ]);
     });
