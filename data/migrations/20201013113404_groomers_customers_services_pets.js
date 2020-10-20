@@ -7,7 +7,7 @@ exports.up = (knex) => {
     table.integer('pet_id').references('id').inTable('pets');
     table.integer('groomer_id').references('id').inTable('groomers');
     table.integer('service_id').references('id').inTable('services');
-
+    table.unique(['customer_id', 'pet_id', 'groomer_id', 'service_id']);
     table.timestamps(true, true);
   });
 };
