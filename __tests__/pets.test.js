@@ -62,12 +62,12 @@ describe('pets router endpoints', () => {
       };
       Pets.findById.mockResolvedValue(undefined);
       Pets.create.mockResolvedValue([
-        Object.assign({ id: 'd376de0577681ca93614' }, pets),
+        Object.assign({ id: 'd376de0577681ca93614' }, pet),
       ]);
-      const res = await request(server).post('/pets').send(pets);
+      const res = await request(server).post('/pets').send(pet);
 
       expect(res.status).toBe(200);
-      expect(res.body.pets.id).toBe('d376de0577681ca93614');
+      expect(res.body.pet.id).toBe('d376de0577681ca93614');
       expect(Pets.create.mock.calls.length).toBe(1);
     });
   });
@@ -81,12 +81,12 @@ describe('pets router endpoints', () => {
         avatarUrl:
           'https://s3.amazonaws.com/uifaces/faces/twitter/hermanobrother/128.jpg',
       };
-      Pets.findById.mockResolvedValue(pets);
+      Pets.findById.mockResolvedValue(pet);
       Pets.update.mockResolvedValue([pets]);
 
-      const res = await request(server).put('/pets/').send(pets);
+      const res = await request(server).put('/pets/').send(pet);
       expect(res.status).toBe(200);
-      expect(res.body.pets.name).toBe('Louie Smith');
+      expect(res.body.pet.name).toBe('Louie Smith');
       expect(Pets.update.mock.calls.length).toBe(1);
     });
   });
