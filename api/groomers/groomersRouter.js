@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       return res.status(200).json(groomer);
     } else {
       const groomers = await groomersModel.findAll();
-      return res.status(200).json({ groomers });
+      return res.status(200).json(groomers);
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -52,7 +52,7 @@ router.put('/:id', async (req, res) => {
 
     const updatedGroomer = await groomersModel.update(req.params.id, req.body);
 
-    return res.status(200).json(updatedGroomer);
+    return res.status(200).json(updatedGroomer[0]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
