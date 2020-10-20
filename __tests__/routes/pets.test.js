@@ -1,7 +1,7 @@
 const request = require('supertest');
 const express = require('express');
-const Pets = require('../api/pets/petsmodel');
-const petsrouter = require('../api/pets/petsrouter');
+const Pets = require('../../api/pets/petsmodel');
+const petsrouter = require('../../api/pets/petsrouter');
 const server = express();
 server.use(express.json());
 
@@ -35,6 +35,8 @@ describe('pets router endpoints', () => {
         id: 'd376de0577681ca93614',
         name: 'Chuckee',
         description: 'Pug breed with no medical conditions',
+        photo_url:
+          'https://s3.amazonaws.com/uifaces/faces/twitter/hermanobrother/128.jpg',
       });
       const res = await request(server).get('/pets/d376de0577681ca93614');
 
@@ -57,7 +59,7 @@ describe('pets router endpoints', () => {
       const pet = {
         name: 'Chuckee',
         description: 'Pug breed with no medical conditions',
-        avatarUrl:
+        photo_url:
           'https://s3.amazonaws.com/uifaces/faces/twitter/hermanobrother/128.jpg',
       };
       Pets.findById.mockResolvedValue(undefined);
@@ -78,7 +80,7 @@ describe('pets router endpoints', () => {
         id: 'd376de0577681ca93614',
         name: 'Louie Smith',
         description: 'This is updated test on pet',
-        avatarUrl:
+        photo_url:
           'https://s3.amazonaws.com/uifaces/faces/twitter/hermanobrother/128.jpg',
       };
       Pets.findById.mockResolvedValue(pet);
