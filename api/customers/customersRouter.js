@@ -5,7 +5,7 @@ const customersModel = require('./customersModel');
 router.get('/', async (req, res) => {
   try {
     const customers = await customersModel.findAll();
-    return res.status(200).json({ customers });
+    return res.status(200).json(customers);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -49,7 +49,7 @@ router.put('/:id', async (req, res) => {
       req.body
     );
 
-    return res.status(200).json(updatedCustomer);
+    return res.status(200).json(updatedCustomer[0]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
