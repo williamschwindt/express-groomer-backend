@@ -1,5 +1,4 @@
 const request = require('supertest');
-const supertest = require('supertest');
 const express = require('express');
 const Groomers = require('../../api/groomers/groomersModel');
 const groomersRouter = require('../../api/groomers/groomersRouter');

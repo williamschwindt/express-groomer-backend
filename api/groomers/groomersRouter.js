@@ -59,48 +59,6 @@ router.put('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  // try {
-  //   const newGroomer = req.body;
-
-  //   if (
-  //     !newGroomer.name ||
-  //     !newGroomer.lastname ||
-  //     !newGroomer.address ||
-  //     !newGroomer.phone ||
-  //     !newGroomer.email
-  //   ) {
-  //     return res.status(400).json({
-  //       message: 'request body needs name, lastname, address, phone, and email',
-  //     });
-  //   }
-
-    // const groomerPhoneExists = await groomersModel.findBy({
-    //   phone: newGroomer.phone,
-    // });
-
-    // if (groomerPhoneExists[0]) {
-    //   console.log(groomerPhoneExists);
-    //   return res.status(400).json({
-    //     message: 'a user with this phone number already exists',
-    //   });
-    // }
-
-    // const groomerEmailExists = await groomersModel.findBy({
-    //   email: newGroomer.email,
-    // });
-
-    // if (groomerEmailExists[0]) {
-    //   return res.status(400).json({
-    //     message: 'a user with this email address already exists',
-    //   });
-    // }
-
-  //   const addedGroomer = await groomersModel.createGroomer(newGroomer);
-
-  //   res.status(201).json(addedGroomer);
-  // } catch (err) {
-  //   res.status(500).json({ message: err.message });
-  // }
   const newGroomer = req.body;
   try {
     if (
