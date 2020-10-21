@@ -96,10 +96,9 @@ describe('customers router endpoints', () => {
         Object.assign({ id: '1000' }, customer),
       ]);
       const res = await request(server).post('/customers').send(customer);
-      console.log(res.body);
 
       expect(res.status).toBe(201);
-      expect(res.body.customers.id).toBe('1000');
+      expect(res.body.id).toBe('1000');
       expect(Customers.create.mock.calls.length).toBe(1);
     });
   });

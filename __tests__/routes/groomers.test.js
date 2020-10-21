@@ -1,4 +1,5 @@
 const request = require('supertest');
+const supertest = require('supertest');
 const express = require('express');
 const Groomers = require('../../api/groomers/groomersModel');
 const groomersRouter = require('../../api/groomers/groomersRouter');
@@ -96,10 +97,9 @@ describe('groomers router endpoints', () => {
         Object.assign({ id: '1000' }, groomer),
       ]);
       const res = await request(server).post('/groomers').send(groomer);
-      console.log(res.body);
 
       expect(res.status).toBe(201);
-      expect(res.body.groomers.id).toBe('1000');
+      expect(res.body.id).toBe('1000');
       expect(Groomers.create.mock.calls.length).toBe(1);
     });
   });
