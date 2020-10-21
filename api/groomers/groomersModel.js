@@ -28,11 +28,6 @@ const remove = async (id) => {
   return await db('groomers').where({ id }).del();
 };
 
-const createGroomer = async (groomerObj) => {
-  const [id] = await db('groomers').insert(groomerObj).returning('id');
-  return await findById(id);
-};
-
 module.exports = {
   findAll,
   findBy,
@@ -40,5 +35,4 @@ module.exports = {
   create,
   update,
   remove,
-  createGroomer,
 };

@@ -28,11 +28,6 @@ const remove = async (id) => {
   return await db('customers').where({ id }).del();
 };
 
-const createCustomer = async (customerObj) => {
-  const [id] = await db('customers').insert(customerObj).returning('id');
-  return await findById(id);
-};
-
 module.exports = {
   findAll,
   findBy,
@@ -40,5 +35,4 @@ module.exports = {
   create,
   update,
   remove,
-  createCustomer,
 };
