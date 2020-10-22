@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       return res.status(200).json(groomer);
     } else {
       const groomers = await groomersModel.findAll();
-      return res.status(200).json({ groomers });
+      return res.status(200).json(groomers);
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -52,16 +52,15 @@ router.put('/:id', async (req, res) => {
 
     const updatedGroomer = await groomersModel.update(req.params.id, req.body);
 
-    return res.status(200).json(updatedGroomer);
+    return res.status(200).json(updatedGroomer[0]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
 router.post('/', async (req, res) => {
+  const newGroomer = req.body;
   try {
-    const newGroomer = req.body;
-
     if (
       !newGroomer.name ||
       !newGroomer.lastname ||
@@ -78,7 +77,7 @@ router.post('/', async (req, res) => {
       phone: newGroomer.phone,
     });
 
-    if (groomerPhoneExists[0]) {
+    if (groomerPhoneExists && groomerPhoneExists.length !== 0) {
       return res.status(400).json({
         message: 'a user with this phone number already exists',
       });
@@ -88,15 +87,14 @@ router.post('/', async (req, res) => {
       email: newGroomer.email,
     });
 
-    if (groomerEmailExists[0]) {
+    if (groomerEmailExists && groomerEmailExists.length !== 0) {
       return res.status(400).json({
         message: 'a user with this email address already exists',
       });
+    } else {
+      const addedGroomer = await groomersModel.create(newGroomer);
+      res.status(201).json(addedGroomer[0]);
     }
-
-    const addedGroomer = await groomersModel.createGroomer(newGroomer);
-
-    res.status(201).json(addedGroomer);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -1,37 +1,37 @@
 const request = require('supertest');
 const express = require('express');
-const Groomers = require('../../api/groomers/groomersModel');
-const groomersRouter = require('../../api/groomers/groomersRouter');
+const Customers = require('../../api/customers/customersModel');
+const customersRouter = require('../../api/customers/customersRouter');
 const server = express();
 server.use(express.json());
 
-jest.mock('../../api/groomers/groomersModel');
+jest.mock('../../api/customers/customersModel');
 // mock the auth middleware completely
 jest.mock('../../api/middleware/authRequired', () =>
   jest.fn((req, res, next) => next())
 );
 
-describe('groomers router endpoints', () => {
+describe('customers router endpoints', () => {
   beforeAll(() => {
     // This is the module/route being tested
-    server.use('/groomers', groomersRouter);
+    server.use('/customers', customersRouter);
     jest.clearAllMocks();
   });
 
-  describe('GET /groomers', () => {
+  describe('GET /customers', () => {
     it('should return 200', async () => {
-      Groomers.findAll.mockResolvedValue([]);
-      const res = await request(server).get('/groomers');
+      Customers.findAll.mockResolvedValue([]);
+      const res = await request(server).get('/customers');
 
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(0);
-      expect(Groomers.findAll.mock.calls.length).toBe(1);
+      expect(Customers.findAll.mock.calls.length).toBe(1);
     });
   });
 
-  describe('GET /groomers/:id', () => {
+  describe('GET /customers/:id', () => {
     it('should return 200 when profile found', async () => {
-      Groomers.findById.mockResolvedValue({
+      Customers.findById.mockResolvedValue({
         id: 1,
         name: 'Louie',
         lastname: 'Smith',
@@ -48,7 +48,7 @@ describe('groomers router endpoints', () => {
         day_care_rate: '14000',
         vet_visit_rate: '1200',
       });
-      const res = await request(server).get('/groomers/1');
+      const res = await request(server).get('/customers/1');
 
       expect(res.status).toBe(200);
       expect(res.body.name).toBe('Louie');
@@ -63,21 +63,21 @@ describe('groomers router endpoints', () => {
       expect(res.body.walk_rate).toBe('1200');
       expect(res.body.day_care_rate).toBe('14000');
       expect(res.body.vet_visit_rate).toBe('1200');
-      expect(Groomers.findById.mock.calls.length).toBe(1);
+      expect(Customers.findById.mock.calls.length).toBe(1);
     });
 
     it('should return 404 when no user found', async () => {
-      Groomers.findById.mockResolvedValue();
-      const res = await request(server).get('/groomers/1');
+      Customers.findById.mockResolvedValue();
+      const res = await request(server).get('/customers/1');
 
       expect(res.status).toBe(404);
-      expect(res.body.message).toBe('the groomer with that id does not exist');
+      expect(res.body.message).toBe('the customer with that id does not exist');
     });
   });
 
-  describe('POST /groomers', () => {
+  describe('POST /customers', () => {
     it('should return 201 when profile is created', async () => {
-      const groomer = {
+      const customer = {
         oktaId: null,
         name: 'John',
         lastname: 'Doe',
@@ -91,21 +91,21 @@ describe('groomers router endpoints', () => {
         country: 'USA',
         photo_url: 'https://someplace.com/pic.jpg',
       };
-      Groomers.findById.mockResolvedValue(undefined);
-      Groomers.create.mockResolvedValue([
-        Object.assign({ id: '1000' }, groomer),
+      Customers.findById.mockResolvedValue(undefined);
+      Customers.create.mockResolvedValue([
+        Object.assign({ id: '1000' }, customer),
       ]);
-      const res = await request(server).post('/groomers').send(groomer);
+      const res = await request(server).post('/customers').send(customer);
 
       expect(res.status).toBe(201);
       expect(res.body.id).toBe('1000');
-      expect(Groomers.create.mock.calls.length).toBe(1);
+      expect(Customers.create.mock.calls.length).toBe(1);
     });
   });
 
-  describe('PUT /groomers', () => {
+  describe('PUT /customers', () => {
     it('should return 200 when profile is created', async () => {
-      Groomers.findById.mockResolvedValue({
+      Customers.findById.mockResolvedValue({
         id: 1,
         name: 'Louie',
         lastname: 'Smith',
@@ -118,20 +118,17 @@ describe('groomers router endpoints', () => {
         state: 'Georgia',
         country: 'USA',
         photo_url: 'https://someplace.com/pic.jpg',
-        walk_rate: '1200',
-        day_care_rate: '14000',
-        vet_visit_rate: '1200',
       });
-      const groomer = {
+      const customer = {
         name: 'OtherName',
       };
-      Groomers.findById.mockResolvedValue(groomer);
-      Groomers.update.mockResolvedValue([groomer]);
+      Customers.findById.mockResolvedValue(customer);
+      Customers.update.mockResolvedValue([customer]);
 
-      const res = await request(server).put('/groomers/1').send(groomer);
+      const res = await request(server).put('/customers/1').send(customer);
       expect(res.status).toBe(200);
       expect(res.body.name).toBe('OtherName');
-      expect(Groomers.update.mock.calls.length).toBe(1);
+      expect(Customers.update.mock.calls.length).toBe(1);
     });
   });
 });

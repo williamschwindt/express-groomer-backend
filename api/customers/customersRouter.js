@@ -5,7 +5,7 @@ const customersModel = require('./customersModel');
 router.get('/', async (req, res) => {
   try {
     const customers = await customersModel.findAll();
-    return res.status(200).json({ customers });
+    return res.status(200).json(customers);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -49,7 +49,7 @@ router.put('/:id', async (req, res) => {
       req.body
     );
 
-    return res.status(200).json(updatedCustomer);
+    return res.status(200).json(updatedCustomer[0]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -75,8 +75,7 @@ router.post('/', async (req, res) => {
       phone: newCustomer.phone,
     });
 
-    if (customerPhoneExists[0]) {
-      console.log(customerPhoneExists);
+    if (customerPhoneExists && customerPhoneExists.length !== 0) {
       return res.status(400).json({
         message: 'a user with this phone number already exists',
       });
@@ -86,15 +85,14 @@ router.post('/', async (req, res) => {
       email: newCustomer.email,
     });
 
-    if (customerEmailExists[0]) {
+    if (customerEmailExists && customerEmailExists.length !== 0) {
       return res.status(400).json({
         message: 'a user with this email address already exists',
       });
+    } else {
+      const addedCustomer = await customersModel.create(newCustomer);
+      res.status(201).json(addedCustomer[0]);
     }
-
-    const addedCustomer = await customersModel.createCustomer(newCustomer);
-
-    res.status(201).json(addedCustomer);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
