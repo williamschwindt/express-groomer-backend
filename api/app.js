@@ -26,6 +26,8 @@ const groomerRouter = require('./groomers/groomersRouter');
 
 const app = express();
 
+app.use(cors());
+
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at: Promise', p, 'reason:', reason);
   // application specific logging, throwing an error, or other logic here
@@ -39,11 +41,6 @@ app.use(
 
 app.use(helmet());
 app.use(express.json());
-app.use(
-  cors({
-    origin: '*',
-  })
-);
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
