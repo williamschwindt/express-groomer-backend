@@ -6,7 +6,7 @@ const groomers = [...new Array(100)].map(() => ({
   lastname: faker.name.lastName(),
   description: faker.lorem.paragraph(1),
   address: faker.address.streetAddress(),
-  zip: faker.address.zipCode(),
+  zip: '11111',
   phone: faker.phone.phoneNumber(),
   email: faker.internet.email(),
   city: faker.address.city(),
