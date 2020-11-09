@@ -6,7 +6,7 @@ const customers = [...new Array(100)].map(() => ({
   name: faker.name.firstName(),
   lastname: faker.name.lastName(),
   address: faker.address.streetAddress(),
-  zip: '11111',
+  zip: faker.address.zipCode(),
   phone: faker.phone.phoneNumber(),
   email: faker.internet.email(),
   city: faker.address.city(),
