@@ -1,28 +1,19 @@
+const faker = require('faker/locale/en_US');
+
+const groomers_customers_services_pets = [...new Array(100)].map(() => ({
+  customer_id: faker.random.number(100).once,
+  pet_id: faker.random.number(100).once,
+  groomer_id: faker.random.number(100).once,
+}));
+
 exports.seed = function (knex) {
   // Deletes ALL existing entries
   return knex('groomers_customers_services_pets')
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex('groomers_customers_services_pets').insert([
-        {
-          customer_id: 2,
-          pet_id: 1,
-          groomer_id: 1,
-          service_id: 2,
-        },
-        {
-          customer_id: 1,
-          pet_id: 2,
-          groomer_id: 2,
-          service_id: 1,
-        },
-        {
-          customer_id: 1,
-          pet_id: 3,
-          groomer_id: 2,
-          service_id: 1,
-        },
-      ]);
+      return knex('groomers_customers_services_pets').insert(
+        groomers_customers_services_pets
+      );
     });
 };
