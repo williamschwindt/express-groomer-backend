@@ -129,4 +129,14 @@ exports.up = async function (knex) {
   });
 };
 
-exports.down = function () {};
+exports.down = async function (knex) {
+  await knex.schema.dropTableIfExists('appointments');
+  await knex.schema.dropTableIfExists('groomer_services');
+  await knex.schema.dropTableIfExists('services');
+  await knex.schema.dropTableIfExists('pets');
+  await knex.schema.dropTableIfExists('addresses');
+  await knex.schema.dropTableIfExists('cities');
+  await knex.schema.dropTableIfExists('states');
+  await knex.schema.dropTableIfExists('countries');
+  await knex.schema.dropTableIfExists('users');
+};
